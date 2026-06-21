@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta content="strict-origin-when-cross-origin" name="referrer"/><meta content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests" http-equiv="Content-Security-Policy"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Certificate Gallery — Anas Ahmed</title>
+<meta content="Full archive of professional certifications, courses, and workshops — Anas Ahmed." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;zoom:1.18;}
+@media(max-width:768px){html{zoom:1;}}
+body.gallery-body{background:var(--forest);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;font-size:17px;line-height:1.7;}
+:root{--forest:#1f2e27;--forest-mid:#345041;--cream:#fff8e8;--mauve:#b3a0a9;--mauve-light:#d4c8ce;}
+.section-wrap{max-width:1480px;margin:0 auto;padding:56px 72px 80px;}
+.gal-nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 72px;background:rgba(31,46,39,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(179,160,169,.12);}
+.gal-nav-brand{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cream);letter-spacing:2px;text-decoration:none;}
+.gal-nav-brand:hover{color:var(--mauve-light);}
+.gal-nav-back{padding:12px 22px;font-size:11px;}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:transparent;color:var(--cream);font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,248,232,.28);transition:all .3s;font-family:'Inter',sans-serif;}
+.btn-outline:hover{border-color:var(--cream);background:rgba(255,248,232,.06);}
+.gal-hero{padding-top:48px;padding-bottom:24px;}
+.gal-eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--mauve);margin-bottom:14px;}
+.gal-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:300;line-height:1.1;color:var(--cream);}
+.gal-title em{font-style:italic;color:var(--mauve-light);}
+.gal-lead{max-width:560px;margin-top:18px;color:rgba(255,248,232,.58);font-size:16px;}
+.gal-section{padding-top:32px;}
+.gal-section-alt{background:#192520;border-top:1px solid rgba(179,160,169,.08);}
+.gal-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,40px);font-weight:300;color:var(--cream);margin-bottom:10px;}
+.gal-subtitle em{font-style:italic;color:var(--mauve-light);}
+.gal-section-note{font-size:14px;color:rgba(255,248,232,.42);margin-bottom:36px;}
+.cert-career-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1px;background:rgba(179,160,169,.12);border:1px solid rgba(179,160,169,.12);}
+.gallery-grid-spaced{margin-bottom:8px;}
+.cert-career-card{background:#192520;padding:0;overflow:hidden;display:flex;flex-direction:column;}
+.gal-section .cert-career-card{background:var(--forest);}
+.cert-career-img-wrap{height:228px;background:rgba(31,46,39,.5);display:flex;align-items:center;justify-content:center;padding:16px;border-bottom:1px solid rgba(179,160,169,.1);}
+.gal-section .cert-career-img-wrap{background:rgba(255,248,232,.04);}
+.cert-career-img-btn{display:flex;align-items:center;justify-content:center;width:100%;height:100%;margin:0;padding:0;border:none;background:transparent;cursor:zoom-in;}
+.cert-career-img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:brightness(.95);}
+.cert-career-body{padding:32px 28px 36px;display:flex;flex-direction:column;flex:1;}
+.cert-career-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--cream);line-height:1.35;margin-bottom:14px;}
+.cert-career-desc{font-size:14px;color:rgba(255,248,232,.55);line-height:1.75;margin-bottom:18px;flex:1;}
+.cert-career-date{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mauve);}
+.gal-footer{text-align:center;padding:40px 24px 56px;color:rgba(255,248,232,.35);font-size:13px;}
+.gal-footer a{color:var(--mauve);}
+.cert-lightbox{position:fixed;inset:0;z-index:10050;background:rgba(12,18,15,.93);display:none;align-items:center;justify-content:center;padding:56px 20px 32px;}
+.cert-lightbox.is-open{display:flex;}
+.cert-lightbox-backdrop{position:absolute;inset:0;cursor:zoom-out;}
+.cert-lightbox-inner{position:relative;z-index:1;max-width:min(1024px,96vw);max-height:90vh;display:flex;align-items:center;justify-content:center;}
+.cert-lightbox-img{max-width:min(1024px,96vw);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:2px;box-shadow:0 28px 90px rgba(0,0,0,.55);}
+.cert-lightbox-close{position:fixed;top:20px;right:24px;z-index:10052;width:48px;height:48px;border:1px solid rgba(179,160,169,.35);background:rgba(31,46,39,.85);color:var(--cream);font-size:28px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:300;}
+.cert-lightbox-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:90vw;text-align:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,248,232,.45);z-index:10052;margin:0;}
+body.cert-lightbox-open{overflow:hidden;}
+@media(max-width:700px){.gal-nav,.section-wrap{padding-left:28px;padding-right:28px;}}
+
+</style>
+</head>
+<body class="gallery-body">
+<nav class="gal-nav">
+<a class="gal-nav-brand" href="index.html">Anas Ahmed</a>
+<a class="btn-outline gal-nav-back" href="index.html#certifications"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+</nav>
+<main class="gal-main" id="certGalleryRoot">
+<header class="gal-hero section-wrap">
+<p class="gal-eyebrow">Credentials archive</p>
+<h1 class="gal-title">Certificate <em>gallery</em></h1>
+<p class="gal-lead">Every credential with artwork — tap an image for a larger preview.</p>
+</header>
+<section class="section-wrap gal-section">
+<h2 class="gal-subtitle">Professional <em>credentials</em></h2>
+<p class="gal-section-note">Same highlights as the home page marquee.</p>
+<div class="cert-career-grid gallery-grid-spaced">
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Google Cybersecurity Professional Certificate" class="cert-career-img" height="400" loading="lazy" src="google-cybersecurity-professional-certificate.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Google Cybersecurity Professional Certificate</h3>
+<p class="cert-career-desc">Cybersecurity fundamentals, threat analysis, incident response — Google / Coursera.</p>
+<div class="cert-career-date">May 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Cisco Ethical Hacker" class="cert-career-img" height="400" loading="lazy" src="cisco-ethical-hacker.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Ethical Hacker — Cisco</h3>
+<p class="cert-career-desc">Advanced ethical hacking techniques, penetration testing methodologies and frameworks.</p>
+<div class="cert-career-date">Apr 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="IoT Wireless and Cloud Computing" class="cert-career-img" height="400" loading="lazy" src="iot-wireless-and-cloud-computing.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">IoT: Wireless &amp; Cloud Computing</h3>
+<p class="cert-career-desc">Emerging Technologies — Yonsei University / Coursera.</p>
+<div class="cert-career-date">Feb 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="HCIA Storage V4.5" class="cert-career-img" height="400" loading="lazy" src="hcia-storage-v4-5-course.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">HCIA-Storage V4.5</h3>
+<p class="cert-career-desc">Huawei Certified ICT Associate — Enterprise Storage Technologies.</p>
+<div class="cert-career-date">May 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="AWS Cloud Academy Graduate" class="cert-career-img" height="400" loading="lazy" src="aws-cloud-semester-1.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">AWS Cloud Academy Graduate</h3>
+<p class="cert-career-desc">Amazon Web Services cloud computing fundamentals, architecture and deployment.</p>
+<div class="cert-career-date">Mar 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Black Hat C++ for Pentesters" class="cert-career-img" height="400" loading="lazy" src="black-hat-cpp-for-pentesters.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Black Hat C++ for Pentesters</h3>
+<p class="cert-career-desc">Advanced C++ for penetration testing and exploit development — EC-Council.</p>
+<div class="cert-career-date">Mar 2024</div>
+</div>
+</article>
+</div>
+</section>
+<section class="section-wrap gal-section gal-section-alt">
+<h2 class="gal-subtitle">Courses, workshops &amp; <em>events</em></h2>
+<p class="gal-section-note">Additional certificates and participation records.</p>
+<div class="cert-career-grid gallery-grid-spaced">
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Reaching for the Stars Series workshop" class="cert-career-img" height="400" loading="lazy" src="reaching-for-the-stars-series.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Reaching for the Stars Series</h3>
+<p class="cert-career-desc">Certificate of attendance for the workshop “Ajman University Reaching for the Stars Series.” Recognizes participation in a student development session led by the Counseling Unit.</p>
+<div class="cert-career-date">October 31, 2023</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Anger Management group meeting" class="cert-career-img" height="400" loading="lazy" src="anger-management.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Anger Management</h3>
+<p class="cert-career-desc">Certificate for participating and presenting in the group meeting “Anger Management,” part of counseling and wellbeing programming.</p>
+<div class="cert-career-date">November 28, 2022</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Building a machine learning app with Gradio" class="cert-career-img" height="400" loading="lazy" src="machine-learning-app-with-gradio.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Machine Learning App with Gradio</h3>
+<p class="cert-career-desc">Certificate of attendance for the workshop “Building Your Own Machine Learning App With Gradio,” hosted with the Google Developer Student Club.</p>
+<div class="cert-career-date">January 23, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Build Your First React Website" class="cert-career-img" height="400" loading="lazy" src="build-your-first-react-website.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Build Your First React Website</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing the Coursera Project Network course “Build Your First React Website.” Recognizes hands-on work building a foundational React site.</p>
+<div class="cert-career-date">June 21, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Command Line Basics in Linux" class="cert-career-img" height="400" loading="lazy" src="command-line-basics-in-linux.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Command Line Basics in Linux</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing the Coursera Project Network course “Command Line Basics in Linux.” Covers essential Linux command-line operations.</p>
+<div class="cert-career-date">June 14, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Computer Basics" class="cert-career-img" height="400" loading="lazy" src="computer-basics.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Computer Basics</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood Abdulrab for completing “Computer Basics” through Edraak. Foundations in hardware, storage, networks, operating systems, software, and ICDL-aligned essentials.</p>
+<div class="cert-career-date">August 17, 2023</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Data Analysis with R Programming" class="cert-career-img" height="400" loading="lazy" src="data-analysis-with-r-programming.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Data Analysis with R Programming</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Data Analysis with R Programming” on Coursera. Foundational data analysis skills using R.</p>
+<div class="cert-career-date">February 24, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Fundamentals of Digital Marketing" class="cert-career-img" height="400" loading="lazy" src="fundamentals-of-digital-marketing.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Fundamentals of Digital Marketing</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Fundamentals of Digital Marketing.” Covers online presence, search, advertising, and analytics.</p>
+<div class="cert-career-date">January 21, 2023</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Exploit3rs CTF Competition" class="cert-career-img" height="400" loading="lazy" src="exploit3rs-ctf-competition.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Exploit3rs CTF Competition</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed for outstanding participation in the Exploit3rs CTF Competition (University Track). Student-led cybersecurity challenges and practical problem-solving.</p>
+<div class="cert-career-date">May 19, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Tools of the Trade Linux and SQL" class="cert-career-img" height="400" loading="lazy" src="tools-of-the-trade-linux-and-sql.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Tools of the Trade: Linux and SQL</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Tools of the Trade: Linux and SQL” on Coursera. Linux command-line usage and core SQL database concepts.</p>
+<div class="cert-career-date">February 9, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Sound the Alarm Detection and Response" class="cert-career-img" height="400" loading="lazy" src="sound-the-alarm-detection-and-response.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Sound the Alarm: Detection and Response</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Sound the Alarm: Detection and Response” on Coursera. Foundational skills in security detection, incident response, and handling alerts.</p>
+<div class="cert-career-date">June 21, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Prepare for Cybersecurity Jobs" class="cert-career-img" height="400" loading="lazy" src="prepare-for-cybersecurity-jobs.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Put It to Work: Prepare for Cybersecurity Jobs</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Put It to Work: Prepare for Cybersecurity Jobs” on Coursera. Career readiness, professional skills, and applying cybersecurity knowledge in workplace contexts.</p>
+<div class="cert-career-date">May 26, 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Manage Security Risks" class="cert-career-img" height="400" loading="lazy" src="manage-security-risks.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Play It Safe: Manage Security Risks</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Play It Safe: Manage Security Risks” on Coursera. Identifying, managing, and reducing cybersecurity risk.</p>
+<div class="cert-career-date">February 7, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Foundations of Cybersecurity" class="cert-career-img" height="400" loading="lazy" src="foundations-of-cybersecurity.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Foundations of Cybersecurity</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Foundations of Cybersecurity” on Coursera. Core concepts, security roles, threats, risks, and fundamental protective practices.</p>
+<div class="cert-career-date">February 6, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Networks and Network Security" class="cert-career-img" height="400" loading="lazy" src="networks-and-network-security.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Connect and Protect: Networks and Network Security</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Connect and Protect: Networks and Network Security” on Coursera. Network security fundamentals and protecting connected systems.</p>
+<div class="cert-career-date">February 8, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Automate Cybersecurity Tasks with Python" class="cert-career-img" height="400" loading="lazy" src="automate-cybersecurity-tasks-with-python.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Automate Cybersecurity Tasks with Python</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Automate Cybersecurity Tasks with Python” on Coursera. Using Python to automate security workflows and repetitive tasks.</p>
+<div class="cert-career-date">May 25, 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Assets Threats and Vulnerabilities" class="cert-career-img" height="400" loading="lazy" src="assets-threats-and-vulnerabilities.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Assets, Threats, and Vulnerabilities</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Google’s “Assets, Threats, and Vulnerabilities” on Coursera. Identifying digital assets, understanding threats, and analyzing vulnerabilities.</p>
+<div class="cert-career-date">February 23, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Web Developer Security Training" class="cert-career-img" height="400" loading="lazy" src="web-developer-security-training.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Web Developer Security Training</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Hacksplaining’s Web Developer Security Training. Web application security concepts and secure development practices.</p>
+<div class="cert-career-date">April 16, 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: International Arab Conference on Information Technology" class="cert-career-img" height="400" loading="lazy" src="international-arab-conference-information-technology.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">24th International Arab Conference on Information Technology</h3>
+<p class="cert-career-desc">Awarded to Anas Ahamed Abdulrab for participating as a listener at ACIT 2023 (December 6–8, 2023). Academic technology conference with Ajman University, ACIT International, and IEEE.</p>
+<div class="cert-career-date">December 6–8, 2023</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Huawei UAE internship" class="cert-career-img" height="400" loading="lazy" src="huawei-uae-internship-certificate.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Huawei UAE Internship</h3>
+<p class="cert-career-desc">Awarded to Mr. Anas Ahmed Hamood for completing an internship at Huawei Tech (UAE) FZ-LLC. Professional exposure and practical industry experience with Huawei UAE.</p>
+<div class="cert-career-date">June 1 – September 6, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Introduction to Networking and Storage" class="cert-career-img" height="400" loading="lazy" src="introduction-to-networking-and-storage.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Introduction to Networking and Storage</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing IBM’s “Introduction to Networking and Storage” on Coursera. Networking concepts, storage systems, and core IT infrastructure.</p>
+<div class="cert-career-date">October 24, 2024</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: IoT Wireless and Cloud Computing" class="cert-career-img" height="400" loading="lazy" src="iot-wireless-and-cloud-computing.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">IoT Wireless &amp; Cloud Computing Emerging Technologies</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for completing Yonsei University’s “IoT Wireless &amp; Cloud Computing Emerging Technologies” on Coursera. IoT, wireless technologies, cloud computing, and emerging tech concepts.</p>
+<div class="cert-career-date">February 18, 2025</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: Mental and Physical Self-Care workshop" class="cert-career-img" height="400" loading="lazy" src="mental-and-physical-self-care.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">Mental and Physical Self-Care</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed for attending the workshop “Mental and Physical Self-Care.” Participation in wellness and personal development programming through the Counseling Unit, Deanship of Student Services.</p>
+<div class="cert-career-date">November 7, 2022</div>
+</div>
+</article>
+<article class="cert-career-card">
+<div class="cert-career-img-wrap">
+<button aria-label="View certificate larger" class="cert-career-img-btn" type="button">
+<img alt="Certificate: SQL the Righteous and the Wicked workshop" class="cert-career-img" height="400" loading="lazy" src="sql-the-righteous-and-the-wicked.webp" width="640"/>
+</button>
+</div>
+<div class="cert-career-body">
+<h3 class="cert-career-name">SQL: The Righteous and the Wicked</h3>
+<p class="cert-career-desc">Awarded to Anas Ahmed Hamood for participating in the Ajman University GDSC workshop “SQL; the Righteous and the Wicked.” Technical session organized by the Department of Information Technology.</p>
+<div class="cert-career-date">February 1, 2023</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<footer class="gal-footer">
+<p>© Anas Ahmed · <a href="index.html">Portfolio home</a></p>
+</footer>
+<div aria-hidden="true" aria-label="Enlarged certificate" aria-modal="true" class="cert-lightbox" id="certLightbox" role="dialog">
+<div class="cert-lightbox-backdrop" id="certLightboxBackdrop"></div>
+<button aria-label="Close preview" class="cert-lightbox-close" id="certLightboxClose" type="button">×</button>
+<div class="cert-lightbox-inner">
+<img alt="" class="cert-lightbox-img" id="certLightboxImg" src=""/>
+</div>
+<p class="cert-lightbox-caption" id="certLightboxCaption"></p>
+</div>
+<script>
+(function(){
+  const lb=document.getElementById("certLightbox");
+  const lbImg=document.getElementById("certLightboxImg");
+  const lbCap=document.getElementById("certLightboxCaption");
+  const lbClose=document.getElementById("certLightboxClose");
+  const backdrop=document.getElementById("certLightboxBackdrop");
+  if(!lb||!lbImg)return;
+  let lastFocus=null;
+  function closeLb(){
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden","true");
+    document.body.classList.remove("cert-lightbox-open");
+    lbImg.removeAttribute("src");
+    lbImg.alt="";
+    lbCap.textContent="";
+    lbCap.style.display="none";
+    if(lastFocus&&typeof lastFocus.focus==="function")lastFocus.focus();
+  }
+  function openLb(src,alt,caption){
+    if(!src)return;
+    lastFocus=document.activeElement;
+    lbImg.src=src;
+    lbImg.alt=alt||"Certificate";
+    lbCap.textContent=caption||"";
+    lbCap.style.display=caption?"block":"none";
+    lb.classList.add("is-open");
+    lb.setAttribute("aria-hidden","false");
+    document.body.classList.add("cert-lightbox-open");
+    lbClose.focus();
+  }
+  document.addEventListener("click",function(e){
+    const btn=e.target.closest("#certGalleryRoot .cert-career-img-btn");
+    if(!btn)return;
+    const img=btn.querySelector("img");
+    if(!img||img.style.display==="none")return;
+    const s=img.getAttribute("src");
+    if(!s)return;
+    e.preventDefault();
+    let caption="";
+    const art=btn.closest(".cert-career-card");
+    if(art){const h=art.querySelector(".cert-career-name");if(h)caption=h.textContent.trim();}
+    openLb(img.currentSrc||img.src,img.alt||"",caption);
+  });
+  lbClose.addEventListener("click",closeLb);
+  lb.addEventListener("click",function(e){if(e.target===lb||e.target===backdrop)closeLb();});
+  lbImg.addEventListener("click",function(e){e.stopPropagation();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&lb.classList.contains("is-open"))closeLb();});
+})();
+</script>
+</body>
+</html>

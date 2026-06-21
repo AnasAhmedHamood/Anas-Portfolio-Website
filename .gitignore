@@ -1,0 +1,23 @@
+# Never commit secrets or local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.*
+config.local.*
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
+
+# Archives and lab files should be reviewed before publishing
+*.zip
+*.rar
+*.7z
+*.pkt
